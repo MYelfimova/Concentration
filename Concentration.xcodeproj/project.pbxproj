@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45233EBC2392D7D500E42823 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45233EBB2392D7D500E42823 /* Concentration.swift */; };
+		45233EBE2392DEA600E42823 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45233EBD2392DEA600E42823 /* Card.swift */; };
 		45E3A6B12387FC570077C891 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3A6B02387FC570077C891 /* AppDelegate.swift */; };
 		45E3A6B32387FC570077C891 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3A6B22387FC570077C891 /* SceneDelegate.swift */; };
 		45E3A6B52387FC570077C891 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E3A6B42387FC570077C891 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		45233EBB2392D7D500E42823 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = SOURCE_ROOT; };
+		45233EBD2392DEA600E42823 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		45E3A6AD2387FC570077C891 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E3A6B02387FC570077C891 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45E3A6B22387FC570077C891 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				45233EBB2392D7D500E42823 /* Concentration.swift */,
+				45233EBD2392DEA600E42823 /* Card.swift */,
 				45E3A6B02387FC570077C891 /* AppDelegate.swift */,
 				45E3A6B22387FC570077C891 /* SceneDelegate.swift */,
 				45E3A6B42387FC570077C891 /* ViewController.swift */,
@@ -143,6 +146,7 @@
 			files = (
 				45E3A6B52387FC570077C891 /* ViewController.swift in Sources */,
 				45233EBC2392D7D500E42823 /* Concentration.swift in Sources */,
+				45233EBE2392DEA600E42823 /* Card.swift in Sources */,
 				45E3A6B12387FC570077C891 /* AppDelegate.swift in Sources */,
 				45E3A6B32387FC570077C891 /* SceneDelegate.swift in Sources */,
 			);
