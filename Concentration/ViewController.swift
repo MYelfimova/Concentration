@@ -22,11 +22,18 @@ class ViewController: UIViewController {
     private(set) var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
+            pointsCountLabel.text = "Points: \(flipCount)"
         }
     }
 
     
     @IBOutlet private weak var flipCountLabel: UILabel!
+    
+    @IBOutlet private weak var pointsCountLabel: UILabel!
+    
+    @IBAction func newGame(_ sender: UIButton) {
+        print("New Game button is clicked")
+    }
     
     //BASICALLY allows me to generate as many cards as I want and to display on top of then whatever content I want
     @IBOutlet private var cardButtons: [UIButton]!

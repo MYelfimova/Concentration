@@ -55,7 +55,7 @@ class Concentration {
     }
     
     init(numberOfPairsOfCards: Int){
-        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards): Number of paor of cards has to be for than 1")
+        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards): Number of pairs of cards has to be for than 1")
         for _ in 0..<numberOfPairsOfCards{
             let card = Card()
             cards += [card, card]
