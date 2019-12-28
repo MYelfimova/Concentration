@@ -62,9 +62,9 @@
 			children = (
 				45233EBB2392D7D500E42823 /* Concentration.swift */,
 				45233EBD2392DEA600E42823 /* Card.swift */,
+				45E3A6B42387FC570077C891 /* ViewController.swift */,
 				45E3A6B02387FC570077C891 /* AppDelegate.swift */,
 				45E3A6B22387FC570077C891 /* SceneDelegate.swift */,
-				45E3A6B42387FC570077C891 /* ViewController.swift */,
 				45E3A6B62387FC570077C891 /* Main.storyboard */,
 				45E3A6B92387FC5F0077C891 /* Assets.xcassets */,
 				45E3A6BB2387FC5F0077C891 /* LaunchScreen.storyboard */,
