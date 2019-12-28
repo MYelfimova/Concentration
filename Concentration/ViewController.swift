@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     
     @IBAction func newGame(_ sender: UIButton) {
         print("New Game button is clicked")
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        flipCount = 0
+        updateViewFromModel()
     }
     
     //BASICALLY allows me to generate as many cards as I want and to display on top of then whatever content I want
@@ -75,8 +78,9 @@ class ViewController: UIViewController {
     private var emoji = Dictionary<Int, String>()
     
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
+        var emojiChoicesTemp = emojiChoices // temporary solution!
+        if emoji[card.identifier] == nil, emojiChoicesTemp.count > 0 {
+            emoji[card.identifier] = emojiChoicesTemp.remove(at: emojiChoicesTemp.count.arc4random)
         }
         
         return emoji[card.identifier] ?? "?"
