@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         flipCount = 0
         updateViewFromModel()
-        emojiTheme = updateEmoji()
+        emojiTheme = updateEmoji(5.arc4random)
     }
     
     //BASICALLY allows me to generate as many cards as I want and to display on top of then whatever content I want
@@ -71,21 +71,21 @@ class ViewController: UIViewController {
         }
     }
       
-    private lazy var emojiTheme = updateEmoji()
+    private lazy var emojiTheme = updateEmoji(5.arc4random)
     
     private var emoji = Dictionary<Int, String>()
     
-    private func updateEmoji() -> Dictionary<String, [String]> {
-           return (["Halloween": ["👻","🦇","🍎","🍬","🍪","😈","💀","🎃", "🧙🏻‍♀️","💨"],
-           "Fruits" :["🍇","🍈","🍉","🍊","🍋","🍌","🍍","🥭","🍎","🍑"],
-           "Food": ["🥞","🍗","🥓","🍔","🍟","🍕","🌭","🥪","🌮","🌯"],
-           "Animals": ["🐹","🐰","🐽","🐮","🦄","🐺","🦊","🐈","🦁","🐶"],
-           "Activities": ["⚽","🥎","🏀","🏈","🎾","🎳","🏓","🎣","🥊","⛸"]])
+    private func updateEmoji(_ numberOfTheme:Int) -> [String] {
+           return ([0: ["⚽","🥎","🏀","🏈","🎾","🎳","🏓","🎣","🥊","⛸"],
+           1 :["🍇","🍈","🍉","🍊","🍋","🍌","🍍","🥭","🍎","🍑"],
+           2: ["🥞","🍗","🥓","🍔","🍟","🍕","🌭","🥪","🌮","🌯"],
+           3: ["🐹","🐰","🐽","🐮","🦄","🐺","🦊","🐈","🦁","🐶"],
+           4: ["👻","🦇","🍎","🍬","🍪","😈","💀","🎃", "🧙🏻‍♀️","💨"]])[numberOfTheme]!
        }
     
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiTheme["Activities"]!.count > 0 {
-            emoji[card.identifier] = emojiTheme["Activities"]!.remove(at: emojiTheme["Activities"]!.count.arc4random)
+        if emoji[card.identifier] == nil, emojiTheme.count > 0 {
+            emoji[card.identifier] = emojiTheme.remove(at: emojiTheme.count.arc4random)
         }
         return emoji[card.identifier] ?? "?"
     }
@@ -94,6 +94,12 @@ class ViewController: UIViewController {
 // BASICALLY I extend the functionality of Int class. Now I can call the computed variable "arc4random" from any instance variable of class Int: ex 5.arc4random
 extension Int {
     var arc4random: Int {
-        return Int(arc4random_uniform(UInt32(self)))
+        if self > 0{
+            return Int(arc4random_uniform(UInt32(self)))
+        } else if self < 0 {
+            return -Int(arc4random_uniform(UInt32(abs(self))))
+        } else {
+            return 0
+        }
     }
 }
