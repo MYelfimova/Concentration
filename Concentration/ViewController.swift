@@ -25,7 +25,6 @@ class ViewController: UIViewController {
             pointsCountLabel.text = "Points: \(flipCount)"
         }
     }
-
     
     @IBOutlet private weak var flipCountLabel: UILabel!
     
@@ -36,6 +35,7 @@ class ViewController: UIViewController {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         flipCount = 0
         updateViewFromModel()
+        emojiTheme = updateEmoji()
     }
     
     //BASICALLY allows me to generate as many cards as I want and to display on top of then whatever content I want
@@ -49,7 +49,6 @@ class ViewController: UIViewController {
         if let cardNumber = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
-            
         } else{
             print("this card is not in the cardButtons array!!")
         }
@@ -69,20 +68,25 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
-            
         }
     }
-    
-    private var emojiChoices = ["👻","🦇","🍎","🍬","🍪","😈","💀","🎃", "🧙🏻‍♀️","💨"]
+      
+    private lazy var emojiTheme = updateEmoji()
     
     private var emoji = Dictionary<Int, String>()
     
+    private func updateEmoji() -> Dictionary<String, [String]> {
+           return (["Halloween": ["👻","🦇","🍎","🍬","🍪","😈","💀","🎃", "🧙🏻‍♀️","💨"],
+           "Fruits" :["🍇","🍈","🍉","🍊","🍋","🍌","🍍","🥭","🍎","🍑"],
+           "Food": ["🥞","🍗","🥓","🍔","🍟","🍕","🌭","🥪","🌮","🌯"],
+           "Animals": ["🐹","🐰","🐽","🐮","🦄","🐺","🦊","🐈","🦁","🐶"],
+           "Activities": ["⚽","🥎","🏀","🏈","🎾","🎳","🏓","🎣","🥊","⛸"]])
+       }
+    
     private func emoji(for card: Card) -> String {
-        var emojiChoicesTemp = emojiChoices // temporary solution!
-        if emoji[card.identifier] == nil, emojiChoicesTemp.count > 0 {
-            emoji[card.identifier] = emojiChoicesTemp.remove(at: emojiChoicesTemp.count.arc4random)
+        if emoji[card.identifier] == nil, emojiTheme["Activities"]!.count > 0 {
+            emoji[card.identifier] = emojiTheme["Activities"]!.remove(at: emojiTheme["Activities"]!.count.arc4random)
         }
-        
         return emoji[card.identifier] ?? "?"
     }
 }
