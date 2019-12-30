@@ -19,12 +19,13 @@ class ViewController: UIViewController {
     }
     
     // didSet is an observer - it watches changes in the variable
-    private(set) var flipCount = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
-            pointsCountLabel.text = "Points: \(flipCount)"
-        }
-    }
+//    private(set) var flipCount = 0 {
+//        didSet {
+//            flipCountLabel.text = "Flips: \(flipCount)"
+//            pointsCountLabel.text = "Points: \(flipCount)"
+//        }
+//    }
+    
     
     @IBOutlet private weak var flipCountLabel: UILabel!
     
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
     @IBAction func newGame(_ sender: UIButton) {
         print("New Game button is clicked")
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
-        flipCount = 0
+        game.flipsCount = 0
         updateViewFromModel()
         emojiTheme = updateEmoji(5.arc4random)
     }
@@ -43,11 +44,12 @@ class ViewController: UIViewController {
     
     //BASICALLY this func allows me to react on the clicks on the cards
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
+        game.flipsCount += 1
         
         //we find the index of the Button that was just clicked
         if let cardNumber = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNumber)
+            // HERE I COUNT POINTS
             updateViewFromModel()
         } else{
             print("this card is not in the cardButtons array!!")
@@ -69,6 +71,8 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
         }
+        flipCountLabel.text = "Flips: \(game.flipsCount)"
+        pointsCountLabel.text = "Points: \(game.pointsCount)"
     }
       
     private lazy var emojiTheme = updateEmoji(5.arc4random)

@@ -13,6 +13,9 @@ class Concentration {
     //initialising a set of cards
     private(set) var cards = [Card]()
     
+    var flipsCount = 0
+    private(set) var pointsCount = 0
+    
     private var indexOfOneAndOnlyCardFaceUp: Int? {
         get {
             var foundIndex: Int?
@@ -34,15 +37,30 @@ class Concentration {
         }
     }
     
+
+    
     func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)")
         if !cards[index].isMatched{
+            // HERE I SET hasBeenMatched PROPERTY
             if let matchIndex = indexOfOneAndOnlyCardFaceUp, matchIndex != index {
                 
                 // check if cards match
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    pointsCount = pointsCount+2 //+2 points when matched
+                } else{
+                    if cards[index].hasBeenSeen && cards[matchIndex].hasBeenSeen {
+                        pointsCount = pointsCount-2
+                        
+                    } else if cards[index].hasBeenSeen || cards[matchIndex].hasBeenSeen {
+                        
+                        pointsCount = pointsCount-1
+                    } else {
+                        cards[index].hasBeenSeen = true
+                        cards[matchIndex].hasBeenSeen = true
+                    }
                 }
                 cards[index].isFaceUp = true
             }
@@ -50,7 +68,6 @@ class Concentration {
                 // else no card or 2 cards are faceup
                 indexOfOneAndOnlyCardFaceUp = index
             }
-   
         }
     }
     
