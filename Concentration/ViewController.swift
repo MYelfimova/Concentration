@@ -18,15 +18,6 @@ class ViewController: UIViewController {
         }
     }
     
-    // didSet is an observer - it watches changes in the variable
-//    private(set) var flipCount = 0 {
-//        didSet {
-//            flipCountLabel.text = "Flips: \(flipCount)"
-//            pointsCountLabel.text = "Points: \(flipCount)"
-//        }
-//    }
-    
-    
     @IBOutlet private weak var flipCountLabel: UILabel!
     
     @IBOutlet private weak var pointsCountLabel: UILabel!
@@ -44,12 +35,10 @@ class ViewController: UIViewController {
     
     //BASICALLY this func allows me to react on the clicks on the cards
     @IBAction private func touchCard(_ sender: UIButton) {
-        game.flipsCount += 1
-        
+
         //we find the index of the Button that was just clicked
         if let cardNumber = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNumber)
-            // HERE I COUNT POINTS
             updateViewFromModel()
         } else{
             print("this card is not in the cardButtons array!!")

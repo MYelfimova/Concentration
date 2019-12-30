@@ -41,6 +41,8 @@ class Concentration {
     
     func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)")
+        
+        flipsCount += 1 // flipsCounter
         if !cards[index].isMatched{
             // HERE I SET hasBeenMatched PROPERTY
             if let matchIndex = indexOfOneAndOnlyCardFaceUp, matchIndex != index {
