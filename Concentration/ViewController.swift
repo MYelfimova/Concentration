@@ -53,20 +53,35 @@ class ViewController: UIViewController {
             
             if card.isFaceUp {
                 button.setTitle(emoji(for: card), for: UIControl.State.normal)
-                button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             }
             else {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
         }
+        updateLabels(flips: game.flipsCount, points: game.pointsCount)
+    }
+    private func updateLabels(flips: Int, points: Int ) {
+        var attributes: [NSAttributedString.Key: Any] = [:]
+        if points < 0 {
+            attributes = [.foregroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)]
+        } else if points >= 5 {
+            attributes = [
+                .foregroundColor: #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1),
+                .strokeWidth: 5.0]
+        } else {
+            attributes = [.foregroundColor: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)]
+        }
+        let attributeString = NSAttributedString(string: "Points: \(points)", attributes: attributes)
+        pointsCountLabel.attributedText = attributeString
+            
         flipCountLabel.text = "Flips: \(game.flipsCount)"
-        pointsCountLabel.text = "Points: \(game.pointsCount)"
     }
       
     private lazy var emojiTheme = updateEmoji(5.arc4random)
     
-    private var emoji = Dictionary<Int, String>()
+    private var emoji = Dictionary<Card, String>()
     
     private func updateEmoji(_ numberOfTheme:Int) -> [String] {
            return ([0: ["⚽","🥎","🏀","🏈","🎾","🎳","🏓","🎣","🥊","⛸"],
@@ -74,13 +89,13 @@ class ViewController: UIViewController {
            2: ["🥞","🍗","🥓","🍔","🍟","🍕","🌭","🥪","🌮","🌯"],
            3: ["🐹","🐰","🐽","🐮","🦄","🐺","🦊","🐈","🦁","🐶"],
            4: ["👻","🦇","🍎","🍬","🍪","😈","💀","🎃", "🧙🏻‍♀️","💨"]])[numberOfTheme]!
-       }
+    }
     
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiTheme.count > 0 {
-            emoji[card.identifier] = emojiTheme.remove(at: emojiTheme.count.arc4random)
+        if emoji[card] == nil, emojiTheme.count > 0 {
+            emoji[card] = emojiTheme.remove(at: emojiTheme.count.arc4random)
         }
-        return emoji[card.identifier] ?? "?"
+        return emoji[card] ?? "?"
     }
 }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Concentration {
+struct Concentration {
     
     //initialising a set of cards
     private(set) var cards = [Card]()
@@ -38,8 +38,9 @@ class Concentration {
     }
     
 
-    
-    func chooseCard(at index: Int) {
+    // since I changed it to be a struct - so I have to make this function mutable.
+    // Meaning that this function can "mutate" the instance variable of Concentration struct
+    mutating func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)")
         
         flipsCount += 1 // flipsCounter
@@ -48,7 +49,7 @@ class Concentration {
             if let matchIndex = indexOfOneAndOnlyCardFaceUp, matchIndex != index {
                 
                 // check if cards match
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     pointsCount = pointsCount+2 //+2 points when matched

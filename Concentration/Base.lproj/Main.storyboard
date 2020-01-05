@@ -235,7 +235,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wWz-3i-6Kh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nfb-rT-uN1"/>
                             <constraint firstItem="PYe-Yq-eMf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="T9y-zl-H0y" secondAttribute="bottom" constant="6" id="Ojq-AR-Kg8"/>
